@@ -2,23 +2,16 @@ package me.tatarka.rxloader.sample;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import java.util.concurrent.TimeUnit;
-
-import me.tatarka.rxloader.RxLoader;
-import me.tatarka.rxloader.RxLoader1;
-import me.tatarka.rxloader.RxLoaderManager;
-import me.tatarka.rxloader.RxLoaderObserver;
-import me.tatarka.rxloader.SaveCallback;
-import rx.Notification;
-import rx.Observable;
-import rx.functions.Action1;
-import rx.functions.Func1;
+import me.tatarka.rxloader2.RxLoader;
+import me.tatarka.rxloader2.RxLoader1;
+import me.tatarka.rxloader2.RxLoaderManager;
+import me.tatarka.rxloader2.RxLoaderObserver;
+import me.tatarka.rxloader2.SaveCallback;
 
 public class MainActivity extends Activity {
     private static final String DELAY_TASK_INIT = "sleep_task_init";
@@ -161,7 +154,7 @@ public class MainActivity extends Activity {
                     }
 
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
                         buttonProgress.setText("Progress Complete! (restart)");
                         buttonProgress.setEnabled(true);
                         progressProgress.setVisibility(View.INVISIBLE);

@@ -1,7 +1,7 @@
 package me.tatarka.rxloader.sample.test;
 
-import me.tatarka.rxloader.RxLoader;
-import rx.Observable;
+import me.tatarka.rxloader2.RxLoader;
+import io.reactivex.Observable;
 
 /**
  * Created by evan on 9/20/14.

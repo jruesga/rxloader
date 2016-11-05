@@ -1,21 +1,18 @@
 apply plugin: 'com.android.application'
 
 repositories {
-    //maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-    //mavenCentral()
     jcenter()
 }
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 20
+        minSdkVersion 16
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
     }
     
     buildTypes {
@@ -31,12 +28,6 @@ android {
 }
 
 dependencies {
-    compile project(':rxloader')
-    compile 'com.android.support:support-v4:20.0.0'
-
-    androidTestCompile 'com.jakewharton.espresso:espresso:1.1-r3'
-    androidTestCompile('com.squareup:fest-android:1.0.8') {
-        exclude group: 'com.android.support', module: 'support-v4'
-    }
-    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.2.1'
+    compile project(':rxloader2')
+    compile "com.android.support:support-v4:25.0.0"
 }

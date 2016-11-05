@@ -3,8 +3,8 @@ package me.tatarka.rxloader.sample.test;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-import me.tatarka.rxloader.RxLoader;
-import rx.Observable;
+import me.tatarka.rxloader2.RxLoader;
+import io.reactivex.Observable;
 
 /**
  * Created by evan on 9/20/14.

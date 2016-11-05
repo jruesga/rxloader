@@ -2,14 +2,13 @@ package me.tatarka.rxloader.sample.test;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.view.View;
 
 import java.util.concurrent.Semaphore;
 
-import me.tatarka.rxloader.RxLoader;
-import me.tatarka.rxloader.RxLoaderManager;
-import me.tatarka.rxloader.RxLoaderObserver;
-import rx.Observable;
+import me.tatarka.rxloader2.RxLoader;
+import me.tatarka.rxloader2.RxLoaderManager;
+import me.tatarka.rxloader2.RxLoaderObserver;
+import io.reactivex.Observable;
 
 /**
  * Created by evan on 9/20/14.
@@ -52,7 +51,7 @@ public class RxLoaderFragment extends Fragment implements TestableRxLoaderActivi
             }
 
             @Override
-            public void onCompleted() {
+            public void onComplete() {
                 mCompleted = true;
                 mCompletedSemaphore.release();
             }

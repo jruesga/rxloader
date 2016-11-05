@@ -10,12 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import me.tatarka.rxloader.RxLoader;
-import me.tatarka.rxloader.RxLoader1;
-import me.tatarka.rxloader.RxLoaderManager;
-import me.tatarka.rxloader.RxLoaderManagerCompat;
-import me.tatarka.rxloader.RxLoaderObserver;
-import me.tatarka.rxloader.SaveCallback;
+import me.tatarka.rxloader2.RxLoader;
+import me.tatarka.rxloader2.RxLoader1;
+import me.tatarka.rxloader2.RxLoaderManager;
+import me.tatarka.rxloader2.RxLoaderManagerCompat;
+import me.tatarka.rxloader2.RxLoaderObserver;
+import me.tatarka.rxloader2.SaveCallback;
 
 /**
  * Created by evan on 9/20/14.
@@ -166,7 +166,7 @@ public class MainFragment extends Fragment {
                     }
 
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
                         buttonProgress.setText("Progress Complete! (restart)");
                         buttonProgress.setEnabled(true);
                         progressProgress.setVisibility(View.INVISIBLE);
