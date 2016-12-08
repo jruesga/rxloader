@@ -15,13 +15,14 @@
  */
 package me.tatarka.rxloader2.safe;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
 /**
  * This is a version from {@link io.reactivex.internal.operators.observable.ObservableFromCallable}
  * that doesn't raise exceptions when subscription is disposed (otherwise exceptions
  * can not be consumed, and are directly send to the vm) and doesn't complain about {@link null}
- * references. Instead, it returns a {@link Boolean#TRUE} reference}.
+ * references. Instead, it returns a {@link Empty#NULL} reference}.
  */
 class NullSafeObservableFromCallable<T> extends SafeObservableFromCallable<T> {
     NullSafeObservableFromCallable(Callable<? extends T> callable) {
@@ -31,12 +32,14 @@ class NullSafeObservableFromCallable<T> extends SafeObservableFromCallable<T> {
     @Override
     @SuppressWarnings("unchecked")
     public T call() throws Exception {
-        T result = callable.call();
-        if (result == null) {
+        T result;
+        try {
+            result = callable.call();
+        } catch (NoSuchElementException ex) {
             // Caller isn't going to check anything because it expect
             // a null return from this. Just return a TRUE object, so
             // rx2 doesn't complaint about a null ref.
-            return (T) Boolean.TRUE;
+            return (T) Empty.NULL;
         }
         return result;
     }
