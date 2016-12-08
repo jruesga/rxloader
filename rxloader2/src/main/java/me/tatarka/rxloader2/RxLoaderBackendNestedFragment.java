@@ -153,9 +153,15 @@ public class RxLoaderBackendNestedFragment extends Fragment implements RxLoaderB
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private String getStateId() {
         if (stateId != null) {
             return stateId;
+        }
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            throw new IllegalStateException(
+                    "NestedFragments are unsupported. Use the compat version.");
         }
 
         Fragment parentFragment = getParentFragment();
@@ -168,7 +174,7 @@ public class RxLoaderBackendNestedFragment extends Fragment implements RxLoaderB
         }
 
         if (stateId == null) {
-            throw new IllegalStateException("Fragment dose not have a valid id");
+            throw new IllegalStateException("Fragment does not have a valid id");
         }
         
         return stateId;
