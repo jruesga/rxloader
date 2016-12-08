@@ -30,7 +30,13 @@ public class SafeObservable {
     @SchedulerSupport(SchedulerSupport.NONE)
     public static <T> Observable<T> fromCallable(Callable<? extends T> supplier) {
         ObjectHelper.requireNonNull(supplier, "supplier is null");
-        return RxJavaPlugins.onAssembly(new SafeObservableFromCallable<T>(supplier));
+        return RxJavaPlugins.onAssembly(new SafeObservableFromCallable<>(supplier));
+    }
+
+    @SchedulerSupport(SchedulerSupport.NONE)
+    public static <T> Observable<T> fromNullCallable(Callable<? extends T> supplier) {
+        ObjectHelper.requireNonNull(supplier, "supplier is null");
+        return RxJavaPlugins.onAssembly(new NullSafeObservableFromCallable<>(supplier));
     }
 
 }

@@ -28,11 +28,12 @@ import io.reactivex.internal.observers.DeferredScalarDisposable;
  * that doesn't raise exceptions when subscription is disposed (otherwise exceptions
  * can not be consumed, and are directly send to the vm).
  */
-public final class SafeObservableFromCallable<T> extends Observable<T> implements Callable<T> {
+class SafeObservableFromCallable<T> extends Observable<T> implements Callable<T> {
     final Callable<? extends T> callable;
-    public SafeObservableFromCallable(Callable<? extends T> callable) {
+    SafeObservableFromCallable(Callable<? extends T> callable) {
         this.callable = callable;
     }
+
     @Override
     public void subscribeActual(Observer<? super T> s) {
         DeferredScalarDisposable<T> d = new DeferredScalarDisposable<T>(s);
@@ -42,7 +43,7 @@ public final class SafeObservableFromCallable<T> extends Observable<T> implement
         }
         T value;
         try {
-            value = ObjectHelper.requireNonNull(callable.call(), "Callable returned null");
+            value = ObjectHelper.requireNonNull(call(), "Callable returned null");
         } catch (Throwable e) {
             Exceptions.throwIfFatal(e);
             if (!d.isDisposed()) {
