@@ -19,7 +19,6 @@ import io.reactivex.Observer;
  *
  * @author Evan Tatarka
  */
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class RxLoaderBackendNestedFragment extends Fragment implements RxLoaderBackend {
     private WeakReference<RxLoaderBackendFragmentHelper> helperRef;
     private List<PendingPut<?>> pendingPuts = new ArrayList<>();
