@@ -9,6 +9,7 @@ class CachingWeakRefSubscriber<T> implements Observer<T>, Disposable {
     private WeakReference<RxLoaderObserver<T>> subscriberRef;
     private Disposable disposable;
     private SaveCallback<T> saveCallback;
+    private boolean isCleared;
     private boolean isComplete;
     private boolean isError;
     private boolean hasValue;
@@ -17,13 +18,14 @@ class CachingWeakRefSubscriber<T> implements Observer<T>, Disposable {
 
     CachingWeakRefSubscriber(RxLoaderObserver<T> observer) {
         set(observer);
+        isCleared = false;
     }
 
     public void set(RxLoaderObserver<T> observer) {
         subscriberRef = new WeakReference<>(observer);
         if (observer == null) return;
 
-        if (!(isComplete || isError)) {
+        if (!isCleared && !(isComplete || isError)) {
             observer.onStarted();
         }
 
@@ -95,6 +97,7 @@ class CachingWeakRefSubscriber<T> implements Observer<T>, Disposable {
 
     public void clear() {
         dispose();
+        isCleared = true;
         isComplete = false;
         isError = false;
         hasValue = false;
