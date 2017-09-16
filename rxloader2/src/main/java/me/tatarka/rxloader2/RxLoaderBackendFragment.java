@@ -1,7 +1,5 @@
 package me.tatarka.rxloader2;
 
-
-import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,7 +14,6 @@ import io.reactivex.Observer;
  *
  * @author Evan Tatarka
  */
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class RxLoaderBackendFragment extends Fragment implements RxLoaderBackend {
     private RxLoaderBackendFragmentHelper helper = new RxLoaderBackendFragmentHelper();
     private boolean wasDetached;

@@ -27,7 +27,10 @@ public final class RxLoaderManagerCompat {
         RxLoaderBackendFragmentCompat manager = (RxLoaderBackendFragmentCompat) activity.getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
         if (manager == null) {
             manager = new RxLoaderBackendFragmentCompat();
-            activity.getSupportFragmentManager().beginTransaction().add(manager, FRAGMENT_TAG).commit();
+            if (!(activity.getSupportFragmentManager().isStateSaved())) {
+                activity.getSupportFragmentManager().beginTransaction().add(manager, FRAGMENT_TAG)
+                        .commit();
+            }
         }
         return new RxLoaderManager(manager);
     }
@@ -43,7 +46,10 @@ public final class RxLoaderManagerCompat {
         RxLoaderBackendNestedFragmentCompat manager = (RxLoaderBackendNestedFragmentCompat) fragment.getChildFragmentManager().findFragmentByTag(FRAGMENT_TAG);
         if (manager == null) {
             manager = new RxLoaderBackendNestedFragmentCompat();
-            fragment.getChildFragmentManager().beginTransaction().add(manager, FRAGMENT_TAG).commit();
+            if (!(fragment.getChildFragmentManager().isStateSaved())) {
+                fragment.getChildFragmentManager().beginTransaction().add(manager, FRAGMENT_TAG)
+                        .commit();
+            }
         }
         return new RxLoaderManager(manager);
     }

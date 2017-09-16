@@ -37,12 +37,7 @@ public class RxLoaderManager {
      * @param activity the activity
      * @return the {@code RxLoaderManager}
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static RxLoaderManager get(Activity activity) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            throw new UnsupportedOperationException("Method only valid in api 11 and above, use RxLoaderManagerCompat to support older versions (requires support library)");
-        }
-
         RxLoaderBackendFragment manager = (RxLoaderBackendFragment) activity.getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
         if (manager == null) {
             manager = new RxLoaderBackendFragment();

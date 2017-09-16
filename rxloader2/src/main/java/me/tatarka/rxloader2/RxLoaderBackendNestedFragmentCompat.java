@@ -1,7 +1,5 @@
 package me.tatarka.rxloader2;
 
-
-import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,7 +17,6 @@ import io.reactivex.Observer;
  *
  * @author Evan Tatarka
  */
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class RxLoaderBackendNestedFragmentCompat extends Fragment implements RxLoaderBackend {
     private WeakReference<RxLoaderBackendFragmentHelper> helperRef;
     private List<PendingPut<?>> pendingPuts = new ArrayList<>();
@@ -40,9 +37,11 @@ public class RxLoaderBackendNestedFragmentCompat extends Fragment implements RxL
                     .getSupportFragmentManager().findFragmentByTag(RxLoaderManager.FRAGMENT_TAG);
             if (backendFragment == null) {
                 backendFragment = new RxLoaderBackendFragmentCompat();
-                activity.getSupportFragmentManager().beginTransaction()
-                        .add(backendFragment, RxLoaderManager.FRAGMENT_TAG)
-                        .commit();
+                if (!(activity.getSupportFragmentManager().isStateSaved())) {
+                    activity.getSupportFragmentManager().beginTransaction()
+                            .add(backendFragment, RxLoaderManager.FRAGMENT_TAG)
+                            .commit();
+                }
             }
 
             RxLoaderBackendFragmentHelper helper = backendFragment.getHelper();
