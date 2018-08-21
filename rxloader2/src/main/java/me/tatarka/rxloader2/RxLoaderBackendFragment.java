@@ -1,7 +1,6 @@
 package me.tatarka.rxloader2;
 
 import android.app.Fragment;
-import android.os.Build;
 import android.os.Bundle;
 
 import java.lang.ref.WeakReference;

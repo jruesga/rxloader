@@ -27,12 +27,14 @@ import io.reactivex.plugins.RxJavaPlugins;
  */
 public class SafeObservable {
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @SchedulerSupport(SchedulerSupport.NONE)
     public static <T> Observable<T> fromCallable(Callable<? extends T> supplier) {
         ObjectHelper.requireNonNull(supplier, "supplier is null");
         return RxJavaPlugins.onAssembly(new SafeObservableFromCallable<>(supplier));
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @SchedulerSupport(SchedulerSupport.NONE)
     public static <T> Observable<T> fromNullCallable(Callable<? extends T> supplier) {
         ObjectHelper.requireNonNull(supplier, "supplier is null");

@@ -16,6 +16,7 @@ public class ParcelableSaveCallback<T> implements SaveCallback<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public T onRestore(String key, Bundle savedState) {
         return (T) savedState.getParcelable(key);
     }

@@ -2,10 +2,11 @@ package me.tatarka.rxloader2;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
 import java.lang.ref.WeakReference;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import io.reactivex.Observer;
 
 /**
@@ -39,7 +40,7 @@ public class RxLoaderBackendFragmentCompat extends Fragment implements RxLoaderB
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         helper.onSaveInstanceState(outState);
     }

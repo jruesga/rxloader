@@ -1,14 +1,14 @@
 package me.tatarka.rxloader2;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import io.reactivex.Observer;
 
 /**
@@ -91,7 +91,7 @@ public class RxLoaderBackendNestedFragmentCompat extends Fragment implements RxL
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         hasSavedState = true;
         RxLoaderBackendFragmentHelper helper = getHelper();
@@ -158,11 +158,13 @@ public class RxLoaderBackendNestedFragmentCompat extends Fragment implements RxL
         }
 
         Fragment parentFragment = getParentFragment();
-        stateId = parentFragment.getTag();
-        if (stateId == null) {
-            int id = parentFragment.getId();
-            if (id > 0) {
-                stateId = Integer.toString(id);
+        if (parentFragment != null) {
+            stateId = parentFragment.getTag();
+            if (stateId == null) {
+                int id = parentFragment.getId();
+                if (id > 0) {
+                    stateId = Integer.toString(id);
+                }
             }
         }
 

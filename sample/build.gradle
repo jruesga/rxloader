@@ -6,12 +6,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.1'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -29,6 +29,6 @@ android {
 }
 
 dependencies {
-    compile project(':rxloader2')
-    compile "com.android.support:support-v4:26.0.1"
+    implementation project(':rxloader2')
+    implementation "androidx.legacy:legacy-support-v4:1.0.0-rc01"
 }

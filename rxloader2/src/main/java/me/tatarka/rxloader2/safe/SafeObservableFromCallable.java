@@ -36,7 +36,7 @@ class SafeObservableFromCallable<T> extends Observable<T> implements Callable<T>
 
     @Override
     public void subscribeActual(Observer<? super T> s) {
-        DeferredScalarDisposable<T> d = new DeferredScalarDisposable<T>(s);
+        DeferredScalarDisposable<T> d = new DeferredScalarDisposable<>(s);
         s.onSubscribe(d);
         if (d.isDisposed()) {
             return;

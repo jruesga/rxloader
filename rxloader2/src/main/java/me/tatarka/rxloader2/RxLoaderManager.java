@@ -5,9 +5,10 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Build;
 
+import androidx.fragment.app.FragmentActivity;
 import io.reactivex.Observable;
-import io.reactivex.functions.Function;
 import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Function;
 
 /**
  * A way to manage asynchronous actions in Android using rxjava. It is much easier to get right than
@@ -31,7 +32,7 @@ public class RxLoaderManager {
     /**
      * Get an instance of the {@code RxLoaderManager} that is tied to the lifecycle of the given
      * {@link android.app.Activity}. If you are using the support library, then you should use
-     * {@link me.tatarka.rxloader2.RxLoaderManagerCompat#get(android.support.v4.app.FragmentActivity)}
+     * {@link me.tatarka.rxloader2.RxLoaderManagerCompat#get( FragmentActivity )}
      * instead.
      *
      * @param activity the activity
@@ -49,7 +50,7 @@ public class RxLoaderManager {
     /**
      * Get an instance of the {@code RxLoaderManager} that is tied to the lifecycle of the given
      * {@link android.app.Fragment}. If you are using the support library, then you should use
-     * {@link me.tatarka.rxloader2.RxLoaderManagerCompat#get(android.support.v4.app.Fragment)}}
+     * {@link me.tatarka.rxloader2.RxLoaderManagerCompat#get( androidx.fragment.app.Fragment )}}
      * instead.
      *
      * @param fragment the fragment
@@ -88,7 +89,7 @@ public class RxLoaderManager {
      * @see me.tatarka.rxloader2.RxLoader
      */
     public <T> RxLoader<T> create(String tag, Observable<T> observable, RxLoaderObserver<T> observer) {
-        return new RxLoader<T>(manager, tag, observable, observer);
+        return new RxLoader<>(manager, tag, observable, observer);
     }
 
     /**
@@ -103,7 +104,7 @@ public class RxLoaderManager {
      * @see me.tatarka.rxloader2.RxLoader
      */
     public <T> RxLoader<T> create(Observable<T> observable, RxLoaderObserver<T> observer) {
-        return new RxLoader<T>(manager, DEFAULT, observable, observer);
+        return new RxLoader<>(manager, DEFAULT, observable, observer);
     }
 
     /**
@@ -121,7 +122,7 @@ public class RxLoaderManager {
      * @see me.tatarka.rxloader2.RxLoader1
      */
     public <A, T> RxLoader1<A, T> create(String tag, Function<A, Observable<T>> observableFunc, RxLoaderObserver<T> observer) {
-        return new RxLoader1<A, T>(manager, tag, observableFunc, observer);
+        return new RxLoader1<>(manager, tag, observableFunc, observer);
     }
 
     /**
@@ -137,7 +138,7 @@ public class RxLoaderManager {
      * @see me.tatarka.rxloader2.RxLoader
      */
     public <A, T> RxLoader1<A, T> create(Function<A, Observable<T>> observableFunc, RxLoaderObserver<T> observer) {
-        return new RxLoader1<A, T>(manager, DEFAULT, observableFunc, observer);
+        return new RxLoader1<>(manager, DEFAULT, observableFunc, observer);
     }
 
     /**
@@ -156,7 +157,7 @@ public class RxLoaderManager {
      * @see me.tatarka.rxloader2.RxLoader1
      */
     public <A, B, T> RxLoader2<A, B, T> create(String tag, BiFunction<A, B, Observable<T>> observableFunc, RxLoaderObserver<T> observer) {
-        return new RxLoader2<A, B, T>(manager, tag, observableFunc, observer);
+        return new RxLoader2<>(manager, tag, observableFunc, observer);
     }
 
     /**
@@ -173,7 +174,7 @@ public class RxLoaderManager {
      * @see me.tatarka.rxloader2.RxLoader
      */
     public <A, B, T> RxLoader2<A, B, T> create(BiFunction<A, B, Observable<T>> observableFunc, RxLoaderObserver<T> observer) {
-        return new RxLoader2<A, B, T>(manager, DEFAULT, observableFunc, observer);
+        return new RxLoader2<>(manager, DEFAULT, observableFunc, observer);
     }
 
     /**

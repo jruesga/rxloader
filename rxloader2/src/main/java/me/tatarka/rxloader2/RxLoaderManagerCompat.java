@@ -1,7 +1,7 @@
 package me.tatarka.rxloader2;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import static me.tatarka.rxloader2.RxLoaderManager.FRAGMENT_TAG;
 
@@ -18,7 +18,7 @@ public final class RxLoaderManagerCompat {
 
     /**
      * Get an instance of {@code RxLoaderManager} that is tied to the lifecycle of the given {@link
-     * android.support.v4.app.FragmentActivity}.
+     * FragmentActivity}.
      *
      * @param activity the activity
      * @return the {@code RxLoaderManager}
@@ -37,7 +37,7 @@ public final class RxLoaderManagerCompat {
 
     /**
      * Get an instance of {@code RxLoaderManager} that is tied to the lifecycle of the given {@link
-     * android.support.v4.app.Fragment}.
+     * Fragment}.
      *
      * @param fragment the fragment
      * @return the {@code RxLoaderManager}
